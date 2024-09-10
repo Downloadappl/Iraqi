@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البث المباشر | الكويت VS العراق</title>
+    
+    <!-- رابط استخدام أيقونات FontAwesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        .buttons {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #007BFF;
+            text-decoration: none;
+            border: 1px solid #007BFF;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #f0f0f0;
+        }
+        .results {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border-radius: 8px;
+        }
+        .video-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 900px;
+            background-color: #e0f7fa;
+            border: 3px solid #007BFF;
+            border-radius: 10px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .video-popup iframe {
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #007BFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>البث المباشر | الكويت VS العراق</h1>
+        <p>مرحباً بكم في موقع البث المباشر لمباراة الكويت ضد العراق. يمكنكم اختيار جودة البث حسب سرعة الإنترنت الخاصة بكم.</p>
+        <p>في هذه الصفحة يمكنكم متابعة البث المباشر للمباراة بالإضافة إلى معرفة النتائج المباشرة.</p>
+
+        <!-- قسم النتائج -->
+        <div class="results">
+            <h2>النتيجة المباشرة:</h2>
+            <p>العراق: <span id="iraq-goals">0</span> أهداف</p>
+            <p>الكويت: <span id="kuwait-goals">0</span> أهداف</p>
+        </div>
+
+        <!-- الأزرار -->
+        <div class="buttons">
+            <button onclick="showPopup('https://mejarserver-cdn.ak-akamaized.com/Tod-3-HD/index.m3u8')">
+                <i class="fas fa-broadcast-tower"></i> بث للإنترنت المتوسط
+            </button>
+            <button onclick="showPopup('https://mejarserver-cdn.ak-akamaized.com/Tod-3-SD/index.m3u8')">
+                <i class="fas fa-wifi"></i> بث للإنترنت الضعيف
+            </button>
+        </div>
+
+        <!-- زر الرجوع للصفحة الرئيسية -->
+        <a href="#" class="back-button"><i class="fas fa-arrow-left"></i></a>
+
+        <!-- نافذة الفيديو المنبثقة -->
+        <div class="video-popup" id="video-popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // عرض الفيديو في نافذة منبثقة
+        function showPopup(url) {
+            var popup = document.getElementById("video-popup");
+            var frame = document.getElementById("video-frame");
+            frame.src = url;
+            popup.style.display = "block";
+        }
+
+        // إغلاق النافذة المنبثقة
+        function closePopup() {
+            var popup = document.getElementById("video-popup");
+            var frame = document.getElementById("video-frame");
+            frame.src = ""; // إفراغ الـ src لإيقاف الفيديو
+            popup.style.display = "none";
+        }
+
+        // تحديث أهداف العراق والكويت بشكل ديناميكي
+        // يمكنك تعديل هذه القيم لتكون تفاعلية حسب الحاجة
+        document.getElementById('iraq-goals').innerText = 0;  // مثال: العراق سجل هدفاً
+        document.getElementById('kuwait-goals').innerText = 0; // مثال: الكويت سجل هدفين
+    </script>
+
+</body>
+</html>
